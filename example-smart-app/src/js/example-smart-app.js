@@ -47,7 +47,7 @@
           var diastolicbp = getBloodPressureValue(byCodes('55284-4'),'8462-4');
           var hdl = byCodes('2085-9');
           var ldl = byCodes('2089-1');
-          var skintemp=byCodes('39106-0');
+          var skintemp = byCodes('39106-0');
           
           var p = defaultPatient();
           p.birthdate = patient.birthDate;
@@ -93,7 +93,7 @@
       diastolicbp: {value: ''},
       ldl: {value: ''},
       hdl: {value: ''},
-      skintemp:{value: ''},
+      skintemp: {value: ''},
     };
   }
 
