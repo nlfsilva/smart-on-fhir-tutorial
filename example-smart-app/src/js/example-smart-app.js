@@ -38,9 +38,7 @@
             lname = patient.name[0].family.join(' ');
           }
 
-          if (typeof patient.Address[0] !== 'undefined') {
-            address = patient.Address[0].text.join(' ');
-           }
+         
 
           var height = byCodes('8302-2');
           var systolicbp = getBloodPressureValue(byCodes('55284-4'),'8480-6');
