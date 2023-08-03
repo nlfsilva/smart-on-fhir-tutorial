@@ -17,8 +17,8 @@
                       code: {
                         $or: ['http://loinc.org|8302-2', 'http://loinc.org|8462-4',
                               'http://loinc.org|8480-6', 'http://loinc.org|2085-9',
-                              'http://loinc.org|2089-1', 'http://loinc.org|55284-4']
-														 
+                              'http://loinc.org|2089-1', 'http://loinc.org|55284-4', 
+                              'http://loinc.org|39106-0']
                       }
                     }
                   });
@@ -31,31 +31,31 @@
 
           var fname = '';
           var lname = '';
-						  
+          var address= '';
 
           if (typeof patient.name[0] !== 'undefined') {
             fname = patient.name[0].given.join(' ');
             lname = patient.name[0].family.join(' ');
           }
 
-														  
-														
-			
+          if (typeof patient.Address[0] !== 'undefined') {
+            address = patient.Address[0].text.join(' ');
+           }
 
           var height = byCodes('8302-2');
           var systolicbp = getBloodPressureValue(byCodes('55284-4'),'8480-6');
           var diastolicbp = getBloodPressureValue(byCodes('55284-4'),'8462-4');
           var hdl = byCodes('2085-9');
           var ldl = byCodes('2089-1');
-
-		  
+          var skintemp = byCodes('39106-0');
+          
           var p = defaultPatient();
           p.birthdate = patient.birthDate;
           p.gender = gender;
           p.fname = fname;
           p.lname = lname;
           p.height = getQuantityValueAndUnit(height[0]);
-							 
+          p.address= address;
 
           if (typeof systolicbp != 'undefined')  {
             p.systolicbp = systolicbp;
@@ -67,8 +67,8 @@
 
           p.hdl = getQuantityValueAndUnit(hdl[0]);
           p.ldl = getQuantityValueAndUnit(ldl[0]);
-
-		  
+          p.skintemp = getQuantityValueAndUnit(skintemp[0]);
+          
           ret.resolve(p);
         });
       } else {
@@ -87,13 +87,13 @@
       lname: {value: ''},
       gender: {value: ''},
       birthdate: {value: ''},
-						 
+      address:{value:''},
       height: {value: ''},
       systolicbp: {value: ''},
       diastolicbp: {value: ''},
       ldl: {value: ''},
       hdl: {value: ''},
-							
+      skintemp: {value: ''},
     };
   }
 
@@ -132,13 +132,13 @@
     $('#lname').html(p.lname);
     $('#gender').html(p.gender);
     $('#birthdate').html(p.birthdate);
-								  
+    $('#address').html(p.address);
     $('#height').html(p.height);
     $('#systolicbp').html(p.systolicbp);
     $('#diastolicbp').html(p.diastolicbp);
     $('#ldl').html(p.ldl);
     $('#hdl').html(p.hdl);
-									
+    $('#skintemp').html(p.skintemp);
   };
 
 })(window);
