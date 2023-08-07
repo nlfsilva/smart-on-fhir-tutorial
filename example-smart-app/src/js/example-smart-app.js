@@ -45,7 +45,7 @@
           var diastolicbp = getBloodPressureValue(byCodes('55284-4'),'8462-4');
           var hdl = byCodes('2085-9');
           var ldl = byCodes('2089-1');
-          var skintemp = byCodes('8310-5');
+          var temp = byCodes('8310-5');
           
           var p = defaultPatient();
           p.birthdate = patient.birthDate;
@@ -65,7 +65,7 @@
 
           p.hdl = getQuantityValueAndUnit(hdl[0]);
           p.ldl = getQuantityValueAndUnit(ldl[0]);
-          p.skintemp = getQuantityValueAndUnit(skintemp[0]);
+          p.temp = getQuantityValueAndUnit(temp[0]);
           
           ret.resolve(p);
         });
@@ -91,7 +91,7 @@
       diastolicbp: {value: ''},
       ldl: {value: ''},
       hdl: {value: ''},
-      skintemp: {value: ''},
+      temp: {value: ''},
     };
   }
 
@@ -136,7 +136,7 @@
     $('#diastolicbp').html(p.diastolicbp);
     $('#ldl').html(p.ldl);
     $('#hdl').html(p.hdl);
-    $('#skintemp').html(p.skintemp);
+    $('#temp').html(p.skintemp);
   };
 
 })(window);
